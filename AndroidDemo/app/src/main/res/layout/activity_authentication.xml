@@ -48,4 +48,10 @@
         android:textStyle="bold"
         style="?android:textAppearanceSmall" />
 
+    <TextView
+        android:id="@+id/snackbar_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_widget_margin" />
+
 </LinearLayout>
