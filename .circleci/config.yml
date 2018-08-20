@@ -14,6 +14,9 @@ jobs:
           name: Goto project
           command: cd AndroidDemo
       - run:
+          name: Goto project
+          command: echo $PWD
+      - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies          
       - save_cache:
