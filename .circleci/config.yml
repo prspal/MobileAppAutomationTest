@@ -1,22 +1,12 @@
-version: 2
-
 jobs:
-dependencies:
-  pre:
-    -run:
-     name: Insall Firebase-tools 
-     command: npm install -g firebase-tools
-     
-     
-     
 build:
-    working_directory: ~/code/AndroidDemo
-    docker:
-      - image: circleci/android:api-28-alpha
-    environment:
+  working_directory: ~/code/AndroidDemo
+  
+  environment:
       JVM_OPTS: -Xmx3200m
-   
-    steps:
+  
+     
+  steps:
       - checkout: 
           path: ~/code
       - restore_cache:
@@ -31,16 +21,21 @@ build:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
-  
+
+  test:
+    docker:
+      - image: circleci/android:api-28-alpha  # gcloud is baked into this image
+    steps:
+    
       - run:
           name: Build debug APK and release APK
           command: |
             ./gradlew :app:assembleDebug
             ./gradlew :app:assembleDebugAndroidTest
-
       - run:
           name: Store Google Service Account
           command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+ 
       - run:
           name: Authorize gcloud and set config defaults
           command: |
