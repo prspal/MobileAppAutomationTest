@@ -43,6 +43,10 @@ jobs:
               --app app/build/outputs/apk/debug/app-debug.apk
               --test app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
               --results-bucket cloud-test-${GOOGLE_PROJECT_ID}
+              --device model=Nexus5X,\
+              version=26,\
+              locale=en_US,\
+              orientation=portrait 
       - run:
           name: Install gsutil dependency and copy test results data
           command: |
