@@ -47,7 +47,7 @@ jobs:
             sudo gcloud firebase test android run --type instrumentation \
               --app $PWD/app/build/outputs/apk/debug/app-debug.apk \
               --test $PWD/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
-              --results-bucket cloud-test-${GOOGLE_PROJECT_ID}\
+              --results-bucket cloud-test-${GOOGLE_PROJECT_ID} \
               --device model=Nexus5X,\
               version=26,\
               locale=en_US,\
