@@ -1,6 +1,5 @@
-
 version: 2
-jobs:
+
 
 dependencies:
   pre:
@@ -8,6 +7,7 @@ dependencies:
      name: Insall Firebase-tools 
      command: npm install -g firebase-tools
      
+jobs:     
 build:
     working_directory: ~/code/AndroidDemo
     docker:
