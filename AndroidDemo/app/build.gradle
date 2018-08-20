@@ -18,6 +18,12 @@ android {
     }
 }
 
+test {
+    filter{
+        includeTestsMatching "com.mytaxi.android_demo.automation.tests"
+    }
+}
+
 task clearData(type: Exec) {
     def clearDataCommand = ['adb', 'shell', 'pm', 'clear', 'com.mytaxi.android_demo']
     commandLine clearDataCommand
