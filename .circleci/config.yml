@@ -6,7 +6,8 @@ build:
   environment:
       JVM_OPTS: -Xmx3200m
   
-     
+  docker:
+      - image: circleci/android:api-28-alpha  # gcloud is baked into this image     
   steps:
       - checkout: 
           path: ~/code
@@ -22,12 +23,7 @@ build:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
-
-  test:
-    docker:
-      - image: circleci/android:api-28-alpha  # gcloud is baked into this image
-    steps:
-    
+  
       - run:
           name: Build debug APK and release APK
           command: |
