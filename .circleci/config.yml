@@ -1,13 +1,10 @@
 version: 2
 jobs:
   build:
-  working_directory: ~/code/AndroidDemo
-  
-  environment:
-      JVM_OPTS: -Xmx3200m
-  
-  docker:
+     working_directory: ~/code/AndroidDemo
+     docker:
       - image: circleci/android:api-28-alpha  # gcloud is baked into this image     
+    
   steps:
       - checkout: 
           path: ~/code
