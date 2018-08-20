@@ -23,7 +23,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
       - run:
           name: Run Tests
-          command: ./gradle test --tests  com.mytaxi.android_demo.automation.tests\*
+          command: ./gradle  test  
       - store_artifacts:
           path: app/build/reports
           destination: reports
