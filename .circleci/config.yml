@@ -12,9 +12,9 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
       - run:
           name: Goto project
-          command: cd AndroidDemo
+          command: pushd AndroidDemo
       - run:
-          name: Goto project
+          name: Check the project dir
           command: echo $PWD
       - run:
           name: Download Dependencies
