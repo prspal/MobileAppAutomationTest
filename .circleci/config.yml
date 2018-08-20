@@ -31,15 +31,15 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           #- v1-dependencies-
 
-      - run: cd AndroidDemo && gradle dependencies
+      - run: echo $PWD && cd AndroidDemo && gradle dependencies
 
-      - save_cache:
-          paths:
-            - ~/.gradle
+      #- save_cache:
+      #    paths:
+      #      - ~/.gradle
           #key: v1-dependencies-{{ checksum "build.gradle" }}
         
       # run tests!
-      - run: cd AndroidDemo && gradle test
+      - run: echo $PWD &&  cd AndroidDemo && gradle test
 
 
 
