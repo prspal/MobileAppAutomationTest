@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Check apk
           command: |
-          ls $PWD/app/build/outputs/apk/debug/app-debug.apk  $PWD/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+              ls $PWD/app/build/outputs/apk/debug/app-debug.apk  $PWD/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
           
       - run:
           name: Test with Firebase Test Lab
