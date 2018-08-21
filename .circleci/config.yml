@@ -49,14 +49,8 @@ jobs:
               --device model=Nexus5X,version=26,locale=en_US,orientation=portrait \
               --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec \
               --directories-to-pull=/sdcard/tmp --timeout 20m
-      - run:
-          name: Create directory to store test results
-          command: mkdir fireBase
+            
       - run:
           name: Install gsutil dependency and get test results 
           command: gsutil -m cp -r -U "`gsutil ls gs://test-lab-v11vbsd1dt2m0-jjyihba3kj2di | tail -1`*"  $CIRCLE_ARTIFACTS/ ||:
-         
-#      - run:
-#          name: Copy test results data
-#          command: |
-#            sudo mv fireBase/* $CIRCLE_ARTIFACTS
+ 
