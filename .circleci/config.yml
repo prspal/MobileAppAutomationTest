@@ -65,4 +65,4 @@ jobs:
             
       - store_artifacts:
           path: firebase/
-          destination: /fireBase/
+          destination: /firebase/
