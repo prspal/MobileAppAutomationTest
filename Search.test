@@ -1,0 +1,27 @@
+Feature: Verify the Search UI and feature
+
+  Scenario: Verify the Search UI  
+    Given User has succusfully logged in
+     When Search page is open
+     Then Verify that page title is "my taxi" 
+      And Verify that UI only has search text box 
+      And Menu key is available in the left of text box
+      And Verify that "Logout" is the only option under Menu 
+  
+  Scenario: Verify "Search as Typing" functionality
+    Given Search UI is open
+     When User starts typing 
+     Then Immidiately search should start with maximum 5 entries on screen
+  
+  Scenario: Verify opening of driver info
+    Given Search UI is open
+     When User searchs for driver
+      And Selects one of the drivers from the result
+     Then Verify that Driver info page is open
+  
+  Scenario: Verify the "Logout" button
+    Given Search UI is open
+     When User selects "Logout" from Menu option
+     Then Verify that myTaxi login page is open
+  
+  
