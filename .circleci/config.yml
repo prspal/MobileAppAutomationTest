@@ -47,7 +47,12 @@ jobs:
             sudo gcloud firebase test android run --type instrumentation \
               --app $PWD/app/build/outputs/apk/debug/app-debug.apk \
               --test $PWD/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
-              --device model=Nexus5X,version=26,locale=en_US,orientation=portrait 
+              --device model=Nexus5X,version=26,locale=en_US,orientation=portrait \
+              --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec \
+              --directories-to-pull=/sdcard/tmp --timeout 20m
+      - run:
+          name: Create directory to store test results
+          command: mkdir firebase
       - run:
           name: Install gsutil dependency and copy test results data
           command: |
