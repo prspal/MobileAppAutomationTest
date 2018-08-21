@@ -54,7 +54,12 @@ jobs:
           name: Create directory to store test results
           command: mkdir firebase
       - run:
-          name: Install gsutil dependency and copy test results data
+          name: Install gsutil dependency and get test results 
           command: |
             sudo pip install -U crcmod
-            sudo gsutil -m cp -r -U "`gsutil ls gs://test-lab-v11vbsd1dt2m0-jjyihba3kj2di | tail -1`*" /root/workspace/firebase/
+            gsutil -m cp -r -U "`gsutil ls gs://test-lab-v11vbsd1dt2m0-jjyihba3kj2di | tail -1`*" firebase
+            
+      - run:
+          name: Copy test results data
+          command: |
+            sudo mv firebase/* /root/workspace/firebase/
