@@ -54,9 +54,9 @@ jobs:
           command: mkdir fireBase
       - run:
           name: Install gsutil dependency and get test results 
-          command: gsutil -m cp -r -U "`gsutil ls gs://test-lab-v11vbsd1dt2m0-jjyihba3kj2di | tail -1`*" fireBase/ | true
+          command: gsutil -m cp -r -U "`gsutil ls gs://test-lab-v11vbsd1dt2m0-jjyihba3kj2di | tail -1`*"  $CIRCLE_ARTIFACTS/ ||:
          
-      - run:
-          name: Copy test results data
-          command: |
-            sudo mv fireBase/* $CIRCLE_ARTIFACTS
+#      - run:
+#          name: Copy test results data
+#          command: |
+#            sudo mv fireBase/* $CIRCLE_ARTIFACTS
