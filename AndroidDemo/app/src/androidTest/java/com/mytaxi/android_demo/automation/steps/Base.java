@@ -15,17 +15,24 @@ import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static org.hamcrest.Matchers.allOf;
 
 public class Base {
+
+    protected ViewInteraction getViewInteraction(int objId) {
+        Matcher<View> viewMatcher = withId(objId);
+        return onView(allOf(viewMatcher));
+    }
 
 
     public ViewInteraction getHeader() {
 
-        return onView(Matchers.allOf(
+        return onView(allOf(
                 ViewMatchers.withClassName(Matchers.endsWith("TextView")),
                 Matchers.anyOf(
-                        ViewMatchers.withParent(ViewMatchers.withId(R.id.action_bar)),
-                        ViewMatchers.withParent(ViewMatchers.withId(R.id.toolbar))
+                        ViewMatchers.withParent(withId(R.id.action_bar)),
+                        ViewMatchers.withParent(withId(R.id.toolbar))
                 ),
 
                 ViewMatchers.isDisplayed()));

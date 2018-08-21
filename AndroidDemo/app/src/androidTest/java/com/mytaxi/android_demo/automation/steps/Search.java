@@ -1,15 +1,17 @@
 package com.mytaxi.android_demo.automation.steps;
 
-import android.support.test.espresso.Espresso;
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.matcher.RootMatchers;
 import android.support.test.espresso.matcher.ViewMatchers;
 
 import com.mytaxi.android_demo.R;
 
 import org.hamcrest.Matchers;
 
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
@@ -48,5 +50,18 @@ public class Search extends Base {
         onView(allOf(withText("Logout"))).perform(click());
 
         return new Login();
+    }
+
+    public void doSearch(String searchText) {
+
+        onView(ViewMatchers.withId(R.id.textSearch)).perform(typeText(searchText));
+
+    }
+
+    public DrvProfile selectName(String name) {
+        onView(withText(name))
+                .inRoot(RootMatchers.isPlatformPopup())
+                .perform(click());
+        return new DrvProfile();
     }
 }

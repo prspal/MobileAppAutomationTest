@@ -24,12 +24,6 @@ import static org.hamcrest.Matchers.not;
 
 public class Login extends Base {
 
-    private ViewInteraction getViewInteraction(int objId) {
-        Matcher<View> viewMatcher = withId(objId);
-        return onView(allOf(viewMatcher));
-    }
-
-
     public ViewInteraction getHeader1() {
         return Espresso.onView(
                 Matchers.allOf(ViewMatchers.withText("Login"),
@@ -66,6 +60,11 @@ public class Login extends Base {
         editText.perform(ViewActions.typeText(passwd));
     }
 
+    public Search doLogin(String user, String passwd) {
+        setUser(user);
+        setPasswd(passwd);
+        return (Search) doLogin();
+    }
     public Base doLogin() {
         ViewInteraction login = getViewInteraction(R.id.btn_login);
         login.perform(ViewActions.click());

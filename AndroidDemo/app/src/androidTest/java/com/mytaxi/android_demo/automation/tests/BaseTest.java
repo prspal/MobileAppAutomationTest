@@ -29,7 +29,7 @@ class BaseTest {
         };
     }
 
-    public void waitInSec(int timeInSec) {
+    public static void waitInSec(int timeInSec) {
         try {
             Thread.sleep(1000 * timeInSec);
         } catch (InterruptedException e) {
