@@ -59,4 +59,4 @@ jobs:
       - run:
           name: Copy test results data
           command: |
-            sudo mv fireBase/* $$CIRCLE_ARTIFACTS
+            sudo mv fireBase/* $CIRCLE_ARTIFACTS
