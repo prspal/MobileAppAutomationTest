@@ -37,9 +37,8 @@ jobs:
             sudo gcloud auth activate-service-account  espresso-1@appspot.gserviceaccount.com --key-file=${HOME}/gcloud-service-key.json
             sudo gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
       - run:
-          name: Check apk
-          command: |
-              ls $PWD/app/build/outputs/apk/debug/app-debug.apk  $PWD/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          name: Install Crmod dependency
+          command: sudo pip install -U crcmod
           
       - run:
           name: Test with Firebase Test Lab
@@ -52,13 +51,12 @@ jobs:
               --directories-to-pull=/sdcard/tmp --timeout 20m
       - run:
           name: Create directory to store test results
-          command: mkdir firebase
+          command: mkdir fireBase
       - run:
           name: Install gsutil dependency and get test results 
-          command: |
-            sudo pip install -U crcmod
-            gsutil -m cp -r -U "`gsutil ls gs://test-lab-v11vbsd1dt2m0-jjyihba3kj2di | tail -1`*" firebase | pass_anyway
+          command: gsutil -m cp -r -U "`gsutil ls gs://test-lab-v11vbsd1dt2m0-jjyihba3kj2di | tail -1`*" fireBase/ | true
+         
       - run:
           name: Copy test results data
           command: |
-            sudo mv firebase/* /root/workspace/firebase/
+            sudo mv fireBase/* /root/workspace/firebase/
