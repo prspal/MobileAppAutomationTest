@@ -57,8 +57,7 @@ jobs:
           name: Install gsutil dependency and get test results 
           command: |
             sudo pip install -U crcmod
-            gsutil -m cp -r -U "`gsutil ls gs://test-lab-v11vbsd1dt2m0-jjyihba3kj2di | tail -1`*" firebase
-            echo pass_anyway
+            gsutil -m cp -r -U "`gsutil ls gs://test-lab-v11vbsd1dt2m0-jjyihba3kj2di | tail -1`*" firebase | pass_anyway
       - run:
           name: Copy test results data
           command: |
