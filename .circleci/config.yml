@@ -56,8 +56,11 @@ jobs:
           command: mkdir -p ${CIRCLE_WORKING_DIRECTORY}/firebase
           
       - run:
-          name: Install gsutil dependency and get test results 
-          command: gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  ${CIRCLE_WORKING_DIRECTORY}/firebase ||true
+          name: Download testdata from Test-Lab
+          command:  |
+            gcloud auth activate-service-account  --key-file=${HOME}/gcloud-service-key.json
+            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+            gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  ${CIRCLE_WORKING_DIRECTORY}/firebase ||true
              
       - store_artifacts:
           path: firebase
