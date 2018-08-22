@@ -41,15 +41,15 @@ jobs:
           name: Install Crmod dependency
           command: sudo pip install -U crcmod
           
-      - run:
-          name: Test with Firebase Test Lab
-          command:  >
-            sudo gcloud firebase test android run --type instrumentation \
-              --app $PWD/app/build/outputs/apk/debug/app-debug.apk \
-              --test $PWD/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
-              --device model=Nexus5X,version=26,locale=en_US,orientation=portrait \
-              --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec \
-              --directories-to-pull=/sdcard/tmp --timeout 20m
+#      - run:
+#          name: Test with Firebase Test Lab
+#          command:  >
+#            sudo gcloud firebase test android run --type instrumentation \
+#              --app $PWD/app/build/outputs/apk/debug/app-debug.apk \
+#              --test $PWD/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
+#              --device model=Nexus5X,version=26,locale=en_US,orientation=portrait \
+#              --environment-variables coverage=true,coverageFile=/sdcard/tmp/code-coverage/connected/coverage.ec \
+#              --directories-to-pull=/sdcard/tmp --timeout 20m
 
       - run:
           name: Create directory to store test results
@@ -61,6 +61,7 @@ jobs:
             gcloud auth activate-service-account  --key-file=${HOME}/gcloud-service-key.json
             gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
             gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  ${CIRCLE_WORKING_DIRECTORY}/firebase ||true
+            ls -1 ${CIRCLE_WORKING_DIRECTORY}/firebase
              
       - store_artifacts:
           path: firebase
