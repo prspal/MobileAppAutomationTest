@@ -53,11 +53,11 @@ jobs:
 
       - run:
           name: Create directory to store test results
-          command: mkdir ${HOME}/firebase
+          command: mkdir ${CIRCLE_WORKING_DIRECTORY}/firebase
           
       - run:
           name: Install gsutil dependency and get test results 
-          command: gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  firebase ||true
+          command: gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  ${CIRCLE_WORKING_DIRECTORY}/firebase ||true
              
       - store_artifacts:
           path: firebase
