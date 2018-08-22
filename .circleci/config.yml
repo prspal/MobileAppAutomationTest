@@ -64,5 +64,5 @@ jobs:
             - firebase
             
       - store_artifacts:
-          path: firebase/
+          path: /root/workspace/firebase/
           destination: /firebase/
