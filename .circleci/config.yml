@@ -34,8 +34,8 @@ jobs:
       - run:
           name: Authorize gcloud and set config defaults
           command: |
-            sudo gcloud auth activate-service-account  --key-file=${HOME}/gcloud-service-key.json
-            sudo gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+            gcloud auth activate-service-account  --key-file=${HOME}/gcloud-service-key.json
+            gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
             
       - run:
           name: Install Crmod dependency
@@ -53,17 +53,15 @@ jobs:
 
       - run:
           name: Create directory to store test results
-          command: mkdir -p ${CIRCLE_WORKING_DIRECTORY}/firebase
+          command: mkdir firebase
           
       - run:
           name: Download testdata from Test-Lab
           command:  |
             #gcloud auth activate-service-account  --key-file=${HOME}/gcloud-service-key.json
             #gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-            gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  ${CIRCLE_WORKING_DIRECTORY}/firebase ||true
-            cd ${CIRCLE_WORKING_DIRECTORY}/firebase
-            ls -1 ${CIRCLE_WORKING_DIRECTORY}/firebase
+            gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  firebase ||true
              
       - store_artifacts:
-          path: /home/circleci/code/AndroidDemo
-          destination: ${CIRCLE_WORKING_DIRECTORY}/firebase/
+          path: /home/circleci/code/AndroidDemo/firebase
+          destination: /firebase/
