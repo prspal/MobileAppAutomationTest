@@ -57,8 +57,8 @@ jobs:
           
       - run:
           name: Install gsutil dependency and get test results 
-          command: gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  ${HOME}/firebase ||true
+          command: gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  firebase ||true
              
       - store_artifacts:
-          path: ${HOME}/firebase
+          path: firebase
           destination: /firebase/
