@@ -53,7 +53,7 @@ jobs:
 
       - run:
           name: Create directory to store test results
-          command: mkdir ${CIRCLE_WORKING_DIRECTORY}/firebase
+          command: mkdir -p ${CIRCLE_WORKING_DIRECTORY}/firebase
           
       - run:
           name: Install gsutil dependency and get test results 
