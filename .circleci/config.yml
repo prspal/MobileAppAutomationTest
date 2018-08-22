@@ -53,17 +53,12 @@ jobs:
 
       - run:
           name: Create directory to store test results
-          command: mkdir firebase
+          command: mkdir ${HOME}/firebase
           
       - run:
           name: Install gsutil dependency and get test results 
-          command: gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  firebase ||true
-
-      - persist_to_workspace:
-          root: .
-          paths:
-            - firebase
-            
+          command: gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  ${HOME}/firebase ||true
+             
       - store_artifacts:
-          path: $CIRCLE_ARTIFACTS
+          path: ${HOME}/firebase
           destination: /firebase/
