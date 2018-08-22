@@ -57,7 +57,7 @@ jobs:
           
       - run:
           name: Install gsutil dependency and get test results 
-          command: gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  $CIRCLE_ARTIFACTS ||true
+          command: gsutil -m cp -r -U "`gsutil ls gs://$FIREBASE_TEST_LAB | tail -1`*"  firebase ||true
 
       - persist_to_workspace:
           root: .
