@@ -36,6 +36,7 @@ jobs:
           command: |
             sudo gcloud auth activate-service-account  espresso-1@appspot.gserviceaccount.com --key-file=${HOME}/gcloud-service-key.json
             sudo gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+            
       - run:
           name: Install Crmod dependency
           command: sudo pip install -U crcmod
