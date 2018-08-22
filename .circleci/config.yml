@@ -65,3 +65,6 @@ jobs:
       - store_artifacts:
           path: /home/circleci/code/AndroidDemo/firebase
           destination: /firebase/
+
+      - store_test_results:
+          path: firebase
